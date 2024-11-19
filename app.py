@@ -41,7 +41,7 @@ app.layout = dbc.Container(
             style={'font-size': '24px',
                    'font-family': 'verdana',
                    'text-align': 'center'}
-        ),'''
+        ),''',
         html.Hr(),
         html.Div([
             dbc.Nav(nav_contents, pills=True, justified=False)
