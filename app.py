@@ -35,13 +35,13 @@ app.layout = dbc.Container(
                    'height': '100px',
                    'padding': '20px'}
         ),
-        '''html.H2(
-            children="Indonesia's BPOM",
-            id='subtitle',
-            style={'font-size': '24px',
-                   'font-family': 'verdana',
-                   'text-align': 'center'}
-        ),''',
+        # html.H2(
+        #     children="Indonesia's BPOM",
+        #     id='subtitle',
+        #     style={'font-size': '24px',
+        #            'font-family': 'verdana',
+        #            'text-align': 'center'}
+        # ),
         html.Hr(),
         html.Div([
             dbc.Nav(nav_contents, pills=True, justified=False)
