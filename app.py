@@ -11,7 +11,7 @@ app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.LITERA])
 server = app.server
 
 nav_contents = [
-    dbc.NavItem(dbc.NavLink("All", href="/all", disabled=True)),
+    dbc.NavItem(dbc.NavLink("All", href="/all", active='exact')),
     dbc.NavItem(dbc.NavLink("NPRA", href="/npra", active='exact')),
     dbc.NavItem(dbc.NavLink("HSA", href="/hsa", active='exact')),
     dbc.NavItem(dbc.NavLink("PH FDA", href="/ph", active='exact')),
