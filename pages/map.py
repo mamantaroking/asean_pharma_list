@@ -51,7 +51,7 @@ geojson = json.load(open('malaysia_cloropeth_geojson.json'))
 #     ),
 # ])
 
-app.layout = dbc.Container([
+layout = dbc.Container([
     html.Hr(),
     html.Div([button_group], className='mb-3'),
     dbc.Row(
