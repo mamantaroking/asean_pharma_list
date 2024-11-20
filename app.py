@@ -32,9 +32,10 @@ app.layout = dbc.Container(
                    'font-weight': 'bold',
                    'text-align': 'center',
                    'color': 'white',
-                   'background-color': 'crimson',
-                   'height': '100px',
-                   'padding': '20px'}
+                   'background-color': 'crimson'},
+            # 'height': '100px',
+            # 'padding': '20px'},
+            className='p-2 m-2 bg-gradient bg-opacity-75 border rounded-2'
         ),
         # html.H2(
         #     children="Indonesia's BPOM",
