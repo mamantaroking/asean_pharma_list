@@ -1,0 +1,7 @@
+SELECT 'South East Asia' as region, 'Malaysia NPRA' AS regs_admin, COUNT(*) as count FROM test.npra
+union all
+SELECT 'South East Asia' as region, 'Indonesia BPOM' AS regs_admin, COUNT(*) as count FROM test.bpom
+union all
+SELECT 'South East Asia' as region, 'Singapore HSA' AS regs_admin, COUNT(*) as count FROM test.hsa
+union all
+SELECT 'South East Asia' as region, 'Philippines FDA' AS regs_admin, COUNT(*) as count FROM test.ph_fda where classification = 'Prescription Drug (RX)';

@@ -18,6 +18,7 @@ nav_contents = [
     dbc.NavItem(dbc.NavLink("BPOM", href="/bpom", active='exact')),
     dbc.NavItem(dbc.NavLink("Vietnam FDA", href="#", disabled=True)),
     dbc.NavItem(dbc.NavLink("Sales Map", href="/map", active='exact')),
+    dbc.NavItem(dbc.NavLink("db test", href="/db", active='exact')),
 ]
 # nav = dbc.Nav(nav_contents, pills=True, justified=True)
 

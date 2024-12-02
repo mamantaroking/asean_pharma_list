@@ -1,0 +1,7 @@
+select 'npra' as regs_admin, 'October' as month, count(*) from test.npra where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01'
+union all
+select 'hsa' as  regs_admin, 'October' as month, count(*) from test.hsa where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01'
+union all
+select 'bpom' as  regs_admin, 'October' as month, count(*) from test.bpom where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01'
+union all
+select 'ph_fda' as  regs_admin, 'October' as month, count(*) from test.ph_fda where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01' and classification = 'Prescription Drug (RX)';

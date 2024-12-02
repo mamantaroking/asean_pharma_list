@@ -1,0 +1,7 @@
+select 'Malaysia NPRA' as regs_admins, count(*) from test.npra where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01'
+union all
+select 'Singapore HSA' as regs_admins, count(*) from test.hsa where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01'
+union all
+select 'Indonesia HSA' as regs_admins, count(*) from test.bpom where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01'
+union all
+select 'Philippines FDA' as regs_admins, count(*) from test.ph_fda where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01' and classification = 'Prescription Drug (RX)';
