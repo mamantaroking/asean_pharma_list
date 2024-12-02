@@ -95,8 +95,12 @@ bar = px.bar(
 bar.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)','paper_bgcolor': 'rgba(0, 0, 0, 0)'})
 
 
+# Define external stylesheets
+external_stylesheets = ["https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap",
+                        dbc.themes.LITERA]
+
 # ------------------------------------------------- App Initialization -------------------------------------------------
-app = Dash(__name__, external_stylesheets=[dbc.themes.LITERA])
+app = Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 # print(new_count_df.to_dict("records"))
 
@@ -105,9 +109,21 @@ server = app.server
 app.layout = html.Div([
     html.Div([
         html.Div([
+            html.A([
+                html.Img(id='header-logo', src=r'assets/dp_logo.png', alt='duopharma_logo', height='67px', width='100px', className='center'),
+            ], href='https://duopharmabiotech.com/about-duopharma-biotech/', target="_blank", className='center', style={'width': '150px'}),
+        ], className='fixed-top border shadow-sm dp_gradient p-1'
+        ),
+        html.Div(className='m-5 header_height'),
+        html.Div([
             dbc.Row([
+                # dbc.Col(['NEW PRODUCTS REGISTERED IN OCTOBER 2024'],
                 dbc.Col(['New Products Registered in October 2024'],
-                        className='mx-5 my-4 border shadow text-center h2 py-4 rounded-3 ', md=10, align='center'
+                        className='mx-5 my-4 border shadow text-center h2 py-4 rounded-3 mitr-regular', md=10, align='center',
+                        style={
+                            # 'font-family': 'Passion One',
+                            # 'font-weight': 'bold',
+                        }
                         ),
                 dbc.Col(
                     [
@@ -121,7 +137,8 @@ app.layout = html.Div([
                             'pagination': False,
                             'animateRows': False,
                             "domLayout": "autoHeight",
-                            "suppressColumnMoveAnimation": True
+                            "suppressColumnMoveAnimation": True,
+                            "enableCellTextSelection": True
                         },
                         # columnSize='responsiveSizeToFit',
                         defaultColDef={"filter": False,
@@ -136,7 +153,6 @@ app.layout = html.Div([
                      )],
                     md=5, className='m-5 px-4', align='center'
                 ),
-
                 dbc.Col(
                     [dcc.Graph(
                         figure=pie
@@ -144,29 +160,42 @@ app.layout = html.Div([
                 )
             ], justify='center'
             ),
-
             # Button Group Definition for new products
-            html.Div(
-                [
-                    dbc.RadioItems(
-                        id="new-radios",
-                        className="btn-group",
-                        inputClassName="btn-check",
-                        labelClassName="btn btn-outline-primary",
-                        labelCheckedClassName="active",
-                        options=[
-                            {"label": "All New Products", "value": 'new_all'},
-                            {"label": "Malaysia NPRA", "value": 'new_npra'},
-                            {"label": "Singapore HSA", "value": 'new_hsa'},
-                            {"label": "Indonesia BPOM", "value": 'new_bpom'},
-                            {"label": "Philippines FDA", "value": 'new_ph_fda'}
+            dbc.Row([
+                dbc.Col([
+                    html.Div(
+                        [
+                            dbc.RadioItems(
+                                id="new-radios",
+                                className="btn-group",
+                                inputClassName="btn-check",
+                                labelClassName="btn btn-outline-primary",
+                                labelCheckedClassName="active",
+                                options=[
+                                    {"label": "All New Products", "value": 'new_all'},
+                                    {"label": "Malaysia NPRA", "value": 'new_npra'},
+                                    {"label": "Singapore HSA", "value": 'new_hsa'},
+                                    {"label": "Indonesia BPOM", "value": 'new_bpom'},
+                                    {"label": "Philippines FDA", "value": 'new_ph_fda'}
+                                ],
+                                value='new_all',
+                            ),
+                            html.Div(id="output"),
                         ],
-                        value='new_all',
+                        className="radio-group mt-5 ms-5 mb-2",
                     ),
-                    html.Div(id="output"),
-                ],
-                className="radio-group mt-5 ms-5 mb-2",
-            ),
+                ], md=7
+                ),
+                dbc.Col([
+                    dcc.Download(id='download-new'),
+                    dbc.Button(["Download as .csv"],
+                               color="info",
+                               className="d-flex justify-content-end",
+                               id='btn-1',
+                               ),
+                ], md=4, className='d-flex justify-content-end mt-5 ms-5 mb-2'
+                ),
+            ]),
             html.Div([
                 dag.AgGrid(
                     id='new_grid',
@@ -178,6 +207,7 @@ app.layout = html.Div([
                         'rowSelection': 'single',
                         'pagination': True,
                         'animateRows': False,
+                        "enableCellTextSelection": True
                     },
                     # columnSize='responsiveSizeToFit',
                     defaultColDef={"filter": True,
@@ -189,7 +219,6 @@ app.layout = html.Div([
                 )
             ], className='mx-5 mb-5 shadow'
             ),
-
         ], className="m-5 bg-light border rounded-3"
         ),
 
@@ -251,6 +280,7 @@ def update_table_all(click):
                 'rowSelection': 'single',
                 'pagination': True,
                 'animateRows': False,
+                "enableCellTextSelection": True
             },
             # columnSize='responsiveSizeToFit',
             defaultColDef={"filter": True,
@@ -281,6 +311,7 @@ def update_table_npra(click):
                 'rowSelection': 'single',
                 'pagination': True,
                 'animateRows': False,
+                "enableCellTextSelection": True
             },
             # columnSize='responsiveSizeToFit',
             defaultColDef={"filter": True,
@@ -311,6 +342,7 @@ def update_table_bpom(click):
                 'rowSelection': 'single',
                 'pagination': True,
                 'animateRows': False,
+                "enableCellTextSelection": True
             },
             # columnSize='responsiveSizeToFit',
             defaultColDef={"filter": True,
@@ -341,6 +373,7 @@ def update_table_hsa(click):
                 'rowSelection': 'single',
                 'pagination': True,
                 'animateRows': False,
+                "enableCellTextSelection": True
             },
             # columnSize='responsiveSizeToFit',
             defaultColDef={"filter": True,
@@ -371,6 +404,7 @@ def update_table_ph_fda(click):
                 'rowSelection': 'single',
                 'pagination': True,
                 'animateRows': False,
+                "enableCellTextSelection": True
             },
             # columnSize='responsiveSizeToFit',
             defaultColDef={"filter": True,
@@ -423,6 +457,39 @@ def display_value(value):
         df_data = df.to_dict("records")
         columns = [{"field": i} for i in df.columns]
         return columns, df_data
+
+
+@app.callback(
+    Output('download-new', 'data'),
+    Input('btn-1', 'n_clicks'),
+    State('new-radios', 'value'),
+    prevent_initial_call=True
+)
+def download_btn(click, value):
+    if value == 'new_all':
+        call_query = "select * from test.all_product ap where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01';"
+        df = pd.read_sql(call_query,'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
+        return dcc.send_data_frame(df.to_csv, 'new_all.csv')
+
+    elif value == 'new_npra':
+        call_query = "select * from test.npra where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01';"
+        df = pd.read_sql(call_query,'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
+        return dcc.send_data_frame(df.to_csv, 'new_npra.csv')
+
+    elif value == 'new_hsa':
+        call_query = "select * from test.hsa where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01';"
+        df = pd.read_sql(call_query,'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
+        return dcc.send_data_frame(df.to_csv, 'new_hsa.csv')
+
+    elif value == 'new_bpom':
+        call_query = "select * from test.bpom where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01';"
+        df = pd.read_sql(call_query,'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
+        return dcc.send_data_frame(df.to_csv, 'new_bpom.csv')
+
+    elif value == 'new_ph_fda':
+        call_query = "select * from test.ph_fda where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01';"
+        df = pd.read_sql(call_query,'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
+        return dcc.send_data_frame(df.to_csv, 'new_ph_fda.csv')
 
 
 if __name__ == '__main__':
