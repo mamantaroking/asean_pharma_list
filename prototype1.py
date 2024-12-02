@@ -78,7 +78,7 @@ tree = px.treemap(dfgraph, path=['region', 'regs_admin'], values='count', color=
                   title='Total Registered Products in the Database')
 tree.update_traces(textinfo="label+value")
 # fig.update_traces(root_color="lightgrey")
-tree.update_layout(margin=dict(t=50, l=25, r=25, b=25))
+tree.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)','paper_bgcolor': 'rgba(0, 0, 0, 0)'}, margin=dict(t=50, l=25, r=25, b=25))
 # tree = px.pie(dfgraph, values='count', names='regs_admin')
 
 
@@ -92,6 +92,7 @@ bardf = pd.read_sql_query(bar_chart_query, 'postgresql://dash_databse_postgres_u
 bar = px.bar(
     bardf, x="year", y="count", color="table_name",
     title="Products Registered in the Regulatory Administrations by Year", barmode='group')
+bar.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)','paper_bgcolor': 'rgba(0, 0, 0, 0)'})
 
 
 # ------------------------------------------------- App Initialization -------------------------------------------------
@@ -199,8 +200,8 @@ app.layout = html.Div([
                     className='mx-5 my-4 border shadow text-center h2 py-4 rounded-3 ', align='center', justify='center'
                     ),
             dbc.Row([
-                dbc.Col([dcc.Graph(figure=tree)], md=5, className='m-4 bg-white border border-dark shadow-sm'),
-                dbc.Col([dcc.Graph(figure=bar)], md=6, className='m-4 bg-white border border-dark shadow-sm')
+                dbc.Col([dcc.Graph(figure=tree)], md=5, className='m-4 bg-light'),
+                dbc.Col([dcc.Graph(figure=bar)], md=6, className='m-4 bg-light')
             ], className='m-4 shadow-sm'
             ),
 
