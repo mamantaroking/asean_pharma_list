@@ -9,10 +9,10 @@ import gunicorn
 
 # ------------------------------ (Optional) Psycopg2 PostgreSQL driver Database Connection -----------------------------
 conn = psycopg2.connect(
-    dbname='hello_world',
-    user='postgres',
-    password='020921100961',
-    host='localhost',
+    dbname='trial1_aif8',
+    user='dash_databse_postgres_user',
+    password='UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D',
+    host='dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com',
     port='5432',
 )
 
@@ -40,20 +40,20 @@ getRowStyle = {
 # Load query of "Count of new registered products in each national regulatory administration" for a table
 with open('query_folder/new_count_query.txt', 'r') as file:
     new_count_query = file.read()
-new_count_df = pd.read_sql(new_count_query, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1')
+new_count_df = pd.read_sql(new_count_query, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
 
 
 # Load query of "Every data of the new registered products in the month of October
 # from all national regulatory administration" for a table
 with open('query_folder/new_table_query.txt', 'r') as file:
     new_table_query = file.read()
-new_table_df = pd.read_sql(new_table_query, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1')
+new_table_df = pd.read_sql(new_table_query, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
 
 
 # Load "Count of new registered products in each national regulatory administration" for a pie chart
 with open('query_folder/new_graph_query.txt', 'r') as file:
     new_graph_query = file.read()
-new_graph_df = pd.read_sql(new_graph_query, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1')
+new_graph_df = pd.read_sql(new_graph_query, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
 
 
 # Pie chart definition
@@ -64,7 +64,7 @@ pie.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)','paper_bgcolor': 'rgba(0, 
 # Load query of "Count of all products in the database from each national regulatory administration" for a tree mao
 with open('query_folder/tree_map_query.txt', 'r') as file:
     tree_map_query = file.read()
-dfgraph = pd.read_sql_query(tree_map_query, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1')
+dfgraph = pd.read_sql_query(tree_map_query, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
 dfcount = dfgraph['count'].tolist()
 # print(dfcount)
 
@@ -82,7 +82,7 @@ tree.update_layout(margin=dict(t=50, l=25, r=25, b=25))
 # for a bar chart
 with open('query_folder/bar_chart_query.txt', 'r') as file:
     bar_chart_query = file.read()
-bardf = pd.read_sql_query(bar_chart_query, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1')
+bardf = pd.read_sql_query(bar_chart_query, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
 
 # Bar chart definition
 bar = px.bar(
@@ -237,7 +237,7 @@ def update_table_all(click):
     if click > 0:
         value = 'all_product'
         labelling = "All"
-        df = pd.read_sql_table(value, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1', 'test')
+        df = pd.read_sql_table(value, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8', 'test')
         grid = dag.AgGrid(
             rowData=df.to_dict("records"),
             columnDefs=[{"field": i} for i in df.columns],
@@ -267,7 +267,7 @@ def update_table_npra(click):
     if click > 0:
         value = 'npra'
         labelling = "Malaysia's NPRA"
-        df = pd.read_sql_table(value, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1', 'test')
+        df = pd.read_sql_table(value, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8', 'test')
         grid = dag.AgGrid(
             rowData=df.to_dict("records"),
             columnDefs=[{"field": i} for i in df.columns],
@@ -297,7 +297,7 @@ def update_table_bpom(click):
     if click > 0:
         value = 'bpom'
         labelling = "Indonesia's BPOM"
-        df = pd.read_sql_table(value, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1', 'test')
+        df = pd.read_sql_table(value, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8', 'test')
         grid = dag.AgGrid(
             rowData=df.to_dict("records"),
             columnDefs=[{"field": i} for i in df.columns],
@@ -327,7 +327,7 @@ def update_table_hsa(click):
     if click > 0:
         value = 'hsa'
         labelling = "Singapore's HSA"
-        df = pd.read_sql_table(value, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1', 'test')
+        df = pd.read_sql_table(value, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8', 'test')
         grid = dag.AgGrid(
             rowData=df.to_dict("records"),
             columnDefs=[{"field": i} for i in df.columns],
@@ -357,7 +357,7 @@ def update_table_ph_fda(click):
     if click > 0:
         value = 'ph_fda'
         labelling = "Philippine's FDA"
-        df = pd.read_sql_table(value, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1', 'test')
+        df = pd.read_sql_table(value, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8', 'test')
         grid = dag.AgGrid(
             rowData=df.to_dict("records"),
             columnDefs=[{"field": i} for i in df.columns],
@@ -386,35 +386,35 @@ def update_table_ph_fda(click):
 def display_value(value):
     if value == 'new_all':
         call_query = "select * from test.all_product ap where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01';"
-        df = pd.read_sql(call_query, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1')
+        df = pd.read_sql(call_query, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
         df_data = df.to_dict("records")
         columns = [{"field": i} for i in df.columns]
         return columns, df_data
 
     elif value == 'new_npra':
         call_query = "select * from test.npra where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01';"
-        df = pd.read_sql(call_query, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1')
+        df = pd.read_sql(call_query, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
         df_data = df.to_dict("records")
         columns = [{"field": i} for i in df.columns]
         return columns, df_data
 
     elif value == 'new_hsa':
         call_query = "select * from test.hsa where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01';"
-        df = pd.read_sql(call_query, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1')
+        df = pd.read_sql(call_query, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
         df_data = df.to_dict("records")
         columns = [{"field": i} for i in df.columns]
         return columns, df_data
 
     elif value == 'new_bpom':
         call_query = "select * from test.bpom where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01';"
-        df = pd.read_sql(call_query, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1')
+        df = pd.read_sql(call_query, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
         df_data = df.to_dict("records")
         columns = [{"field": i} for i in df.columns]
         return columns, df_data
 
     elif value == 'new_ph_fda':
         call_query = "select * from test.ph_fda where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01' and classification = 'Prescription Drug (RX)';"
-        df = pd.read_sql(call_query, 'postgresql+psycopg2://postgres:020921100961@localhost:5432/trial1')
+        df = pd.read_sql(call_query, 'postgresql://dash_databse_postgres_user:UqrYMy14MaKSx4z65PkqtcpjRMXf1O6D@dpg-ct6hd7ilqhvc73aklbv0-a.singapore-postgres.render.com/trial1_aif8')
         df_data = df.to_dict("records")
         columns = [{"field": i} for i in df.columns]
         return columns, df_data
