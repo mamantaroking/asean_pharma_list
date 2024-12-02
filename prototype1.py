@@ -94,6 +94,7 @@ bar = px.bar(
 
 # ------------------------------------------------- App Initialization -------------------------------------------------
 app = Dash(__name__, external_stylesheets=[dbc.themes.LITERA])
+server = app.server
 # print(new_count_df.to_dict("records"))
 
 
