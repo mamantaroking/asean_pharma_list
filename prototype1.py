@@ -3,9 +3,6 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.express as px
 import dash_ag_grid as dag
-import dash
-from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
 import psycopg2
 
 
