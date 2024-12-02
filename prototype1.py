@@ -4,6 +4,7 @@ import pandas as pd
 import plotly.express as px
 import dash_ag_grid as dag
 import psycopg2
+import gunicorn
 
 
 # ------------------------------ (Optional) Psycopg2 PostgreSQL driver Database Connection -----------------------------
@@ -417,6 +418,7 @@ def display_value(value):
         df_data = df.to_dict("records")
         columns = [{"field": i} for i in df.columns]
         return columns, df_data
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=8018)
