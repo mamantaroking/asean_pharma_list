@@ -75,14 +75,14 @@ layout = html.Div([
 ])
 
 @callback(
-    Output('download-bpom', 'data'),
+    Output('download-bpom', 'data', allow_duplicate=True),
     Input('btn-1', 'n_clicks'),
     prevent_initial_call=True
 )
 def download_btn(click):
     return dcc.send_data_frame(df.to_csv, 'bpom_df.csv')
 
-@callback(
+'''@callback(
     Output("row-select-modal", "is_open"),
     [Input("table-1", "selectedRows"),
      Input("modal-close", "n_clicks")],
@@ -100,4 +100,4 @@ def toggle_modal(n1, n2, is_open):
         )
     elif n2:
         return not is_open
-    return is_open
+    return is_open'''

@@ -1,0 +1,63 @@
+select 'npra' as table_name, '2024' as year, count(*) from test.npra where date_of_issuance >= '2024-01-01' and date_of_issuance <= now()
+union all
+select 'npra' as table_name, '2023' as year, count(*) from test.npra where date_of_issuance >= '2023-01-01' and date_of_issuance <= '2024-01-01'
+union all
+select 'npra' as table_name, '2022' as year, count(*) from test.npra where date_of_issuance >= '2022-01-01' and date_of_issuance <= '2023-01-01'
+union all
+select 'npra' as table_name, '2021' as year, count(*) from test.npra where date_of_issuance >= '2021-01-01' and date_of_issuance <= '2022-01-01'
+union all
+select 'npra' as table_name, '2020' as year, count(*) from test.npra where date_of_issuance >= '2020-01-01' and date_of_issuance <= '2021-01-01'
+union all
+select 'npra' as table_name, '2019' as year, count(*) from test.npra where date_of_issuance >= '2019-01-01' and date_of_issuance <= '2020-01-01'
+union all
+select 'npra' as table_name, '2018' as year, count(*) from test.npra where date_of_issuance >= '2018-01-01' and date_of_issuance <= '2019-01-01'
+union all
+select 'npra' as table_name, '2017' as year, count(*) from test.npra where date_of_issuance >= '2017-01-01' and date_of_issuance <= '2018-01-01'
+union all
+select 'hsa' as table_name, '2024' as year, count(*) from test.hsa where date_of_issuance >= '2024-01-01' and date_of_issuance <= now()
+union all
+select 'hsa' as table_name, '2023' as year, count(*) from test.hsa where date_of_issuance >= '2023-01-01' and date_of_issuance <= '2024-01-01'
+union all
+select 'hsa' as table_name, '2022' as year, count(*) from test.hsa where date_of_issuance >= '2022-01-01' and date_of_issuance <= '2023-01-01'
+union all
+select 'hsa' as table_name, '2021' as year, count(*) from test.hsa where date_of_issuance >= '2021-01-01' and date_of_issuance <= '2022-01-01'
+union all
+select 'hsa' as table_name, '2020' as year, count(*) from test.hsa where date_of_issuance >= '2020-01-01' and date_of_issuance <= '2021-01-01'
+union all
+select 'hsa' as table_name, '2019' as year, count(*) from test.hsa where date_of_issuance >= '2019-01-01' and date_of_issuance <= '2020-01-01'
+union all
+select 'hsa' as table_name, '2018' as year, count(*) from test.hsa where date_of_issuance >= '2018-01-01' and date_of_issuance <= '2019-01-01'
+union all
+select 'hsa' as table_name, '2017' as year, count(*) from test.hsa where date_of_issuance >= '2017-01-01' and date_of_issuance <= '2018-01-01'
+union all
+select 'bpom' as table_name, '2024' as year, count(*) from test.bpom where date_of_issuance >= '2024-01-01' and date_of_issuance <= now()
+union all
+select 'bpom' as table_name, '2023' as year, count(*) from test.bpom where date_of_issuance >= '2023-01-01' and date_of_issuance <= '2024-01-01'
+union all
+select 'bpom' as table_name, '2022' as year, count(*) from test.bpom where date_of_issuance >= '2022-01-01' and date_of_issuance <= '2023-01-01'
+union all
+select 'bpom' as table_name, '2021' as year, count(*) from test.bpom where date_of_issuance >= '2021-01-01' and date_of_issuance <= '2022-01-01'
+union all
+select 'bpom' as table_name, '2020' as year, count(*) from test.bpom where date_of_issuance >= '2020-01-01' and date_of_issuance <= '2021-01-01'
+union all
+select 'bpom' as table_name, '2019' as year, count(*) from test.bpom where date_of_issuance >= '2019-01-01' and date_of_issuance <= '2020-01-01'
+union all
+select 'bpom' as table_name, '2018' as year, count(*) from test.bpom where date_of_issuance >= '2018-01-01' and date_of_issuance <= '2019-01-01'
+union all
+select 'bpom' as table_name, '2017' as year, count(*) from test.bpom where date_of_issuance >= '2017-01-01' and date_of_issuance <= '2018-01-01'
+union all
+select 'ph_fda' as table_name, '2024' as year, count(*) from test.ph_fda where date_of_issuance >= '2024-01-01' and date_of_issuance <= now() and classification = 'Prescription Drug (RX)'
+union all
+select 'ph_fda' as table_name, '2023' as year, count(*) from test.ph_fda where date_of_issuance >= '2023-01-01' and date_of_issuance <= '2024-01-01' and classification = 'Prescription Drug (RX)'
+union all
+select 'ph_fda' as table_name, '2022' as year, count(*) from test.ph_fda where date_of_issuance >= '2022-01-01' and date_of_issuance <= '2023-01-01' and classification = 'Prescription Drug (RX)'
+union all
+select 'ph_fda' as table_name, '2021' as year, count(*) from test.ph_fda where date_of_issuance >= '2021-01-01' and date_of_issuance <= '2022-01-01' and classification = 'Prescription Drug (RX)'
+union all
+select 'ph_fda' as table_name, '2020' as year, count(*) from test.ph_fda where date_of_issuance >= '2020-01-01' and date_of_issuance <= '2021-01-01' and classification = 'Prescription Drug (RX)'
+union all
+select 'ph_fda' as table_name, '2019' as year, count(*) from test.ph_fda where date_of_issuance >= '2019-01-01' and date_of_issuance <= '2020-01-01' and classification = 'Prescription Drug (RX)'
+union all
+select 'ph_fda' as table_name, '2018' as year, count(*) from test.ph_fda where date_of_issuance >= '2018-01-01' and date_of_issuance <= '2019-01-01' and classification = 'Prescription Drug (RX)'
+union all
+select 'ph_fda' as table_name, '2017' as year, count(*) from test.ph_fda where date_of_issuance >= '2017-01-01' and date_of_issuance <= '2018-01-01' and classification = 'Prescription Drug (RX)' order by year asc;

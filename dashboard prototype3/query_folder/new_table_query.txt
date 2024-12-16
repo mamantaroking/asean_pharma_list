@@ -1,0 +1,1 @@
+select * from test.all_product ap where date_of_issuance >= '2024-10-01' and date_of_issuance <= '2024-11-01';
